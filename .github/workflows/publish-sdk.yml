@@ -10,6 +10,9 @@ jobs:
 
   publish-npm:
     runs-on: ubuntu-20.04    
+    env:
+      NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v3
