@@ -1,0 +1,39 @@
+name: Sum-pkg
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+
+  publish-npm:
+    runs-on: ubuntu-20.04    
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v3
+
+      
+      - name: 📦 Install
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.4.1
+          registry-url: https://registry.npmjs.org/
+
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version-type:  'patch'
+         
+         
+      - name: 🚀 Build and publish SDK
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.4.1
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
