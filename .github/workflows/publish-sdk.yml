@@ -35,4 +35,4 @@ jobs:
           node-version: 16.4.1
       - run: npm publish --access publish
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
